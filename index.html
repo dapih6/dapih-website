@@ -2,12 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My First Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    details {
+      background: white;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+
+    /* background color change when open */
+    details[open] {
+      background: #e8f0fe;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 18px;
+      padding: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* icon */
+    summary::after {
+      content: "▶"; /* triangle arrow */
+      transition: transform 0.3s ease;
+    }
+
+    /* rotate icon when open */
+    details[open] summary::after {
+      transform: rotate(90deg);
+    }
+
+    /* fade-in effect for text */
+    details p {
+      margin: 0;
+      padding: 0 15px 15px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    details[open] p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello VS Code!</h1>
-  <p>This is my first website with CSS 🎨</p>
+  <h1>🌟 My Animated Weekly Blog 🌟</h1>
+
+  <details>
+    <summary>Monday</summary>
+    <p>sdsdsdsdsd</p>
+  </details>
+
+  <details>
+    <summary>Tuesday</summary>
+    <p>dsdsdsds</p>
+  </details>
+
+  <details>
+    <summary>Wednesday</summary>
+    <p>fsfsfsf</p>
+  </details>
+
+    <details>
+    <summary>Thursday</summary>
+    <p>sdfdsfsdfds</p>
+  </details>
+
+  <details>
+    <summary>Friday</summary>
+    <p>sdfdsfsdfds</p>
+  </details>
+
+  <details>
+    <summary>Saturday</summary>
+    <p>sdfdsfsdfds</p>
+  </details>
+
+    <details>
+    <summary>Sunday</summary>
+    <p>sdfdsfsdfds</p>
+  </details>
 </body>
 </html>
-<button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
