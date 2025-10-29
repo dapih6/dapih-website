@@ -5,73 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Group Projects</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
     body {
-      font-family: Arial, sans-serif;
-      background: #0b0c10;
-      color: #eee;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #0a0c12, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      color: #e6e6e6;
       margin: 0;
       padding: 0;
       text-align: center;
       overflow-x: hidden;
+      animation: bgShift 20s ease-in-out infinite;
     }
 
-    /* 🌟 Neon-glow animated text */
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🌀 Floating "The Goats" text */
     .floating-text {
       position: relative;
-      display: inline-block;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #0ff;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      text-shadow: 
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #00ffff,
-        0 0 80px #00ffff;
-      animation: waveMotion 5s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
-      margin-top: 20px;
-      width: 100%;
+      margin: 1.5rem 0 0.5rem 0;
+      background: linear-gradient(90deg, #00f2ff, #00ff88, #ff0099, #00f2ff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(0,255,255,0.4);
+      animation: moveText 5s ease-in-out infinite, colorShift 6s linear infinite;
     }
 
-    @keyframes waveMotion {
+    @keyframes moveText {
       0%, 100% { transform: translateX(-10px); }
       50% { transform: translateX(10px); }
     }
 
-    @keyframes glowPulse {
-      0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #00ffff, 0 0 40px #00ffff; }
-      50% { text-shadow: 0 0 20px #00ffff, 0 0 40px #0ff, 0 0 80px #00ffff; }
+    @keyframes colorShift {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
     }
 
+    /* 🌈 Header entrance animation */
     header {
       background: linear-gradient(90deg, #007bff, #00d4ff);
       color: white;
       padding: 1.5rem;
       font-size: 1.8rem;
-      margin-top: 15px;
       border-radius: 10px 10px 0 0;
-      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      opacity: 0;
+      transform: translateY(-40px);
+      animation: fadeSlideIn 1s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     #project-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
       padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
 
     .project-card {
-      background: #1c1f26;
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,255,255,0.2);
+      box-shadow: 0 0 12px rgba(0,255,255,0.1);
       padding: 1rem;
-      transition: 0.2s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: cardFadeIn 1s ease forwards;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 1s; }
+    .project-card:nth-child(2) { animation-delay: 1.2s; }
+    .project-card:nth-child(3) { animation-delay: 1.4s; }
+    .project-card:nth-child(4) { animation-delay: 1.6s; }
+    .project-card:nth-child(5) { animation-delay: 1.8s; }
+    .project-card:nth-child(6) { animation-delay: 2s; }
+
+    @keyframes cardFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.03);
       box-shadow: 0 4px 20px rgba(0,255,255,0.4);
     }
 
@@ -81,24 +117,27 @@
       color: #00ffff;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.2s;
     }
 
     .project-card a:hover {
+      color: #00ff99;
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <!-- 🌀 Neon floating text -->
-  <div class="floating-text">🌀 The Goats 🌀</div>
+  <!-- 🌀 Floating text -->
+  <div class="floating-text">The Goats</div>
 
+  <!-- 🌟 Header -->
   <header>🌟 Our Group Projects</header>
 
+  <!-- 🧩 Projects -->
   <div id="project-container"></div>
 
   <script>
-    // ✅ Your project list
     const projects = [
       {
         title: "Dafi - Pocong Kehidupan",
@@ -112,27 +151,27 @@
       },
       {
         title: "Nayra - Sayap Harapan",
-        description: "Tema: ...",
+        description: "Tema: Inspiratif",
         link: "https://docs.google.com/document/d/1MFC0wMi8PtfhmCJpe2Z_oEwngQQeq0z3/edit?usp=drive_link"
       },
       {
         title: "Valdy - Mesin Waktu",
-        description: "Tema: ...",
+        description: "Tema: Fiksi Ilmiah",
         link: "https://docs.google.com/document/d/10W2Ibpxuf95ql6Y8UT2F7CxpqBPR7VZK/edit?usp=drive_link"
       },
       {
         title: "Rangga - Bintang Yang Tak Bersinar",
-        description: "Tema: ...",
+        description: "Tema: Drama",
         link: "https://docs.google.com/document/d/1-wXmpMmXF-OSE-fMKw0AYMtdOKVFaCMB/edit?usp=drive_link"
       },
       {
         title: "Padma - Sehari Di Rumah Boneka Adikku",
-        description: "Tema: ...",
+        description: "Tema: Horor Fantasi",
         link: "https://docs.google.com/document/d/1ZMbVzXSEn_RhOcbuEPxCMSy437jartX1/edit?usp=drive_link"
       }
     ];
 
-    // ✅ Display projects dynamically
+    // Render project cards
     const container = document.getElementById('project-container');
     projects.forEach(p => {
       const card = document.createElement('div');
@@ -145,6 +184,5 @@
       container.appendChild(card);
     });
   </script>
-
 </body>
 </html>
