@@ -1,46 +1,97 @@
 <!DOCTYPE html>
-<style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Group Projects</title>
+  <style>
     body {
-        background-color:rgb(77, 153, 179);
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
-    h1 {
-        font-size: 45px;
-        text-align: center;
-        color: rgb(226, 150, 43);
-        text-shadow: -1px -1px 0 #320c0c, 
-                        1px -1px 0 #320c0c, 
-                       -1px  1px 0 #320c0c, 
-                        1px  1px 0 #320c0c;
-    }
-    .infobutton {
-        color: rgb(59, 42, 18);
-        text-decoration-line: none;
-        border-width: 10px;
-        border-radius: 10px;
-        font-size: large;
-        padding: 3px;
-        border-color:rgb(227, 76, 62);
-        border-style: solid;
-        background-color:rgb(227, 76, 62);
-        margin-left: 20px;
-    }
-    .homepageimage {
-        display: block;
-        width: 65%;
-        padding-top: 90px;
-        margin-left: 20px;
-    }
-</style>
 
+    header {
+      background: #007bff;
+      color: white;
+      padding: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    #project-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      transition: 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
 <body>
-    <div style="text-align: center; margin-bottom: 20px;">
-        <a href="index.html" class="infobutton">HOME</a>
-        <a href="serverinfo.html" class="infobutton">SERVER INFORMATION</a>
-        <a href="players.html" class="infobutton">PLAYERS INFORMATION</a>
-    </div>
-    <h1>CROSSOVER NEWS</h1>
-    <img style="margin-left: 25%; margin-right: 25%;" class="homepageimage" src="e.png">
+
+  <header>🌟 Our Group Projects</header>
+  <div id="project-container"></div>
+
+  <script>
+    // ✅ Your project list (add Drive or GitHub file links here)
+    const projects = [
+      {
+        title: "Science Report",
+        description: "Our group’s experiment on plant growth.",
+        link: "https://drive.google.com/file/d/123abc/view"
+      },
+      {
+        title: "Website Prototype",
+        description: "HTML/CSS site we made for school project.",
+        link: "projects/index.html"
+      },
+      {
+        title: "Group Logo",
+        description: "Logo design created by our team.",
+        link: "projects/logo.png"
+      }
+    ];
+
+    // ✅ Display projects
+    const container = document.getElementById('project-container');
+    projects.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+        <a href="${p.link}" target="_blank">Open Project</a>
+      `;
+      container.appendChild(card);
+    });
+  </script>
 
 </body>
-
+</html>
