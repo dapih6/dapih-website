@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Group Projects</title>
+  <title>The Goats - Epic Projects</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
@@ -25,10 +25,10 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* 🌀 Floating "The Goats" text */
+    /* Floating title */
     .floating-text {
       position: relative;
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 800;
       letter-spacing: 5px;
       text-transform: uppercase;
@@ -51,7 +51,6 @@
       100% { background-position: 300%; }
     }
 
-    /* 🌈 Header */
     header {
       background: linear-gradient(90deg, #007bff, #00d4ff);
       color: white;
@@ -72,7 +71,6 @@
       }
     }
 
-    /* 💡 Projects grid */
     #project-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -108,7 +106,7 @@
     }
 
     .project-card:hover {
-      transform: translateY(-8px) scale(1.03);
+      transform: translateY(-8px) scale(1.05);
       box-shadow: 0 4px 20px rgba(0,255,255,0.4);
     }
 
@@ -126,7 +124,6 @@
       text-decoration: underline;
     }
 
-    /* 👥 Group Info Section */
     .group-info {
       background: rgba(0, 0, 0, 0.4);
       border-top: 2px solid rgba(0,255,255,0.3);
@@ -164,22 +161,6 @@
       box-shadow: 0 0 15px rgba(0,255,255,0.4);
     }
 
-    .member h3 {
-      margin: 0.5rem 0;
-      color: #00ffff;
-    }
-
-    .member p {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin: 0;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     footer {
       margin-top: 2rem;
       padding: 1rem;
@@ -187,107 +168,107 @@
       color: #999;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
+
+    /* 🎚️ Sound toggle button */
+    #sound-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: rgba(0,255,255,0.1);
+      border: 1px solid rgba(0,255,255,0.4);
+      color: #00ffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      font-weight: 600;
+      z-index: 10;
+    }
+
+    #sound-toggle:hover {
+      background: rgba(0,255,255,0.25);
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
 
-  <div class="floating-text">The Goats</div>
+  <button id="sound-toggle">🔇 Sound Off</button>
 
+  <!-- 🎵 Background Music -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2023/07/31/audio_fce0041cb5.mp3?filename=epic-inspiring-ambient-161537.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ✨ Hover sound -->
+  <audio id="hover-sfx" preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/25/audio_c29c8d0b89.mp3?filename=ui-click-1-198300.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="floating-text">The Goats</div>
   <header>🌟 Our Group Projects</header>
 
   <div id="project-container"></div>
 
-  <!-- 👥 Group Info Section -->
   <section class="group-info">
     <h2>Meet The Team</h2>
     <div class="members">
-      <div class="member">
-        <h3>Kinan</h3>
-        <p>Our creative leader</p>
-      </div>
-      <div class="member">
-        <h3>Rangga</h3>
-        <p>Our vice leader</p>
-      </div>
-      <div class="member">
-        <h3>Dodi</h3>
-        <p>Editor</p>
-      </div>
-      <div class="member">
-        <h3>Valdy</h3>
-        <p>Editor</p>
-      </div>
-      <div class="member">
-        <h3>Azzira</h3>
-        <p>Editor</p>
-      </div>
-      <div class="member">
-        <h3>Raissa</h3>
-        <p>Editor</p>
-      </div>
-      <div class="member">
-        <h3>Dafi</h3>
-        <p>Illustrator</p>
-      </div>
-      <div class="member">
-        <h3>Nayra</h3>
-        <p>Illustrator</p>
-      </div>
-      <div class="member">
-        <h3>Padma</h3>
-        <p>Illustrator</p>
-      </div>
+      <div class="member"><h3>Kinan</h3><p>Creative Leader</p></div>
+      <div class="member"><h3>Rangga</h3><p>Vice Leader</p></div>
+      <div class="member"><h3>Dodi</h3><p>Editor</p></div>
+      <div class="member"><h3>Valdy</h3><p>Editor</p></div>
+      <div class="member"><h3>Azzira</h3><p>Editor</p></div>
+      <div class="member"><h3>Raissa</h3><p>Editor</p></div>
+      <div class="member"><h3>Dafi</h3><p>Illustrator</p></div>
+      <div class="member"><h3>Nayra</h3><p>Illustrator</p></div>
+      <div class="member"><h3>Padma</h3><p>Illustrator</p></div>
     </div>
   </section>
 
   <footer>© 2025 The Goats Team | All Rights Reserved 🐐</footer>
 
   <script>
-    const projects = [
-      {
-        title: "Dafi - Pocong Kehidupan",
-        description: "Tema: Mistis/Jenaka",
-        link: "https://docs.google.com/document/d/1gPKaczQiabiulN8GWo03mCoAPv1bvwOM/edit?usp=drive_link"
-      },
-      {
-        title: "Kinan - Sahabat Malam",
-        description: "Tema: Supranatural & Friendship",
-        link: "https://docs.google.com/document/d/1YgkTf5XmxWj-mY9pIGWL3bmvlgVTpsLD/edit?usp=drive_link"
-      },
-      {
-        title: "Nayra - Sayap Harapan",
-        description: "Tema: Inspiratif",
-        link: "https://docs.google.com/document/d/1MFC0wMi8PtfhmCJpe2Z_oEwngQQeq0z3/edit?usp=drive_link"
-      },
-      {
-        title: "Valdy - Mesin Waktu",
-        description: "Tema: Fiksi Ilmiah",
-        link: "https://docs.google.com/document/d/10W2Ibpxuf95ql6Y8UT2F7CxpqBPR7VZK/edit?usp=drive_link"
-      },
-      {
-        title: "Rangga - Bintang Yang Tak Bersinar",
-        description: "Tema: Drama",
-        link: "https://docs.google.com/document/d/1-wXmpMmXF-OSE-fMKw0AYMtdOKVFaCMB/edit?usp=drive_link"
-      },
-      {
-        title: "Padma - Sehari Di Rumah Boneka Adikku",
-        description: "Tema: Horor Fantasi",
-        link: "https://docs.google.com/document/d/1ZMbVzXSEn_RhOcbuEPxCMSy437jartX1/edit?usp=drive_link"
+    const music = document.getElementById('bg-music');
+    const sfx = document.getElementById('hover-sfx');
+    const btn = document.getElementById('sound-toggle');
+    let playing = false;
+
+    btn.addEventListener('click', () => {
+      if (playing) {
+        music.pause();
+        btn.textContent = "🔇 Sound Off";
+      } else {
+        music.play();
+        btn.textContent = "🔊 Sound On";
       }
+      playing = !playing;
+    });
+
+    // Play hover sound when hovering over project cards
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest('.project-card') || e.target.closest('.member')) {
+        sfx.currentTime = 0;
+        sfx.play();
+      }
+    });
+
+    const projects = [
+      {title: "Dafi - Pocong Kehidupan", description: "Tema: Mistis/Jenaka", link: "https://docs.google.com/document/d/1gPKaczQiabiulN8GWo03mCoAPv1bvwOM/edit"},
+      {title: "Kinan - Sahabat Malam", description: "Tema: Supranatural & Friendship", link: "https://docs.google.com/document/d/1YgkTf5XmxWj-mY9pIGWL3bmvlgVTpsLD/edit"},
+      {title: "Nayra - Sayap Harapan", description: "Tema: Inspiratif", link: "https://docs.google.com/document/d/1MFC0wMi8PtfhmCJpe2Z_oEwngQQeq0z3/edit"},
+      {title: "Valdy - Mesin Waktu", description: "Tema: Fiksi Ilmiah", link: "https://docs.google.com/document/d/10W2Ibpxuf95ql6Y8UT2F7CxpqBPR7VZK/edit"},
+      {title: "Rangga - Bintang Yang Tak Bersinar", description: "Tema: Drama", link: "https://docs.google.com/document/d/1-wXmpMmXF-OSE-fMKw0AYMtdOKVFaCMB/edit"},
+      {title: "Padma - Sehari Di Rumah Boneka Adikku", description: "Tema: Horor Fantasi", link: "https://docs.google.com/document/d/1ZMbVzXSEn_RhOcbuEPxCMSy437jartX1/edit"},
     ];
 
     const container = document.getElementById('project-container');
     projects.forEach(p => {
       const card = document.createElement('div');
       card.className = 'project-card';
-      card.innerHTML = `
-        <h3>${p.title}</h3>
-        <p>${p.description}</p>
-        <a href="${p.link}" target="_blank">Open Project</a>
-      `;
+      card.innerHTML = `<h3>${p.title}</h3><p>${p.description}</p><a href="${p.link}" target="_blank">Open Project</a>`;
       container.appendChild(card);
     });
   </script>
-
 </body>
 </html>
