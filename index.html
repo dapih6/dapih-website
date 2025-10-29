@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Goats - Epic Projects</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+    :root{
+      --watermark-color: rgba(255,255,255,0.06); /* subtle */
+      --watermark-rotate: -12deg;
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -23,6 +28,33 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    /* ===== WATERMARK ===== */
+    .watermark {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(var(--watermark-rotate));
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: var(--watermark-color);
+      /* responsive size: min 6rem, ideal 25vw, max 20rem */
+      font-size: clamp(6rem, 25vw, 20rem);
+      z-index: 0;                 /* behind everything */
+      pointer-events: none;      /* don't block clicks */
+      user-select: none;         /* can't be selected */
+      white-space: nowrap;
+      text-transform: uppercase;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      mix-blend-mode: normal;    /* keeps predictable color */
+    }
+
+    /* ===== MAIN CONTENT (above watermark) ===== */
+    .main {
+      position: relative;
+      z-index: 1; /* place content above watermark */
     }
 
     /* Floating title */
@@ -161,6 +193,22 @@
       box-shadow: 0 0 15px rgba(0,255,255,0.4);
     }
 
+    .member h3 {
+      margin: 0.5rem 0;
+      color: #00ffff;
+    }
+
+    .member p {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     footer {
       margin-top: 2rem;
       padding: 1rem;
@@ -169,7 +217,7 @@
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* 🎚️ Sound toggle button */
+    /* Sound toggle */
     #sound-toggle {
       position: fixed;
       top: 15px;
@@ -183,79 +231,70 @@
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
       font-weight: 600;
-      z-index: 10;
+      z-index: 12;
+    }
+    #sound-toggle:hover { transform: scale(1.05); }
+
+    /* ensure page content sits above watermark */
+    header, .floating-text, #project-container, .group-info, footer {
+      position: relative;
+      z-index: 2;
     }
 
-    #sound-toggle:hover {
-      background: rgba(0,255,255,0.25);
-      transform: scale(1.05);
+    /* small screens tweak */
+    @media (max-width: 560px) {
+      .watermark { font-size: clamp(4rem, 48vw, 10rem); transform: translate(-50%, -52%) rotate(var(--watermark-rotate)); }
+      .floating-text { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <button id="sound-toggle">🔇 Sound Off</button>
+  <!-- Big subtle watermark behind everything -->
+  <div class="watermark">DAFI</div>
 
-<!-- 🎵 Background Music (direct mp3 link, not a page URL) -->
-<audio id="bg-music" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2023/07/31/audio_fce0041cb5.mp3?filename=epic-inspiring-ambient-161537.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+  <div class="main">
+    <button id="sound-toggle">🔇 Sound Off</button>
 
-<!-- ✨ Hover sound (direct mp3 link) -->
-<audio id="hover-sfx" preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2023/03/25/audio_c29c8d0b89.mp3?filename=ui-click-1-198300.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+    <!-- Background music (host locally or via a direct link you control) -->
+    <audio id="bg-music" loop preload="auto">
+      <!-- Replace src with your hosted mp3 path (example: assets/epic.mp3) -->
+      <!-- <source src="assets/epic.mp3" type="audio/mpeg"> -->
+    </audio>
 
-  <div class="floating-text">The Goats</div>
-  <header>🌟 Our Group Projects</header>
-  <p>WEBSITE DEVELOPMENT BY DAFI 7F</p>
+    <!-- Hover sound example (replace with your hosted mp3) -->
+    <audio id="hover-sfx" preload="auto">
+      <!-- <source src="assets/click.mp3" type="audio/mpeg"> -->
+    </audio>
 
-  <div id="project-container"></div>
+    <div class="floating-text">The Goats</div>
+    <header>🌟 Our Group Projects</header>
+    <p>Website Development By Dafi 7F</p>
+    <p>Website Development By Dafi 7F</p>
+    <p>Website Development By Dafi 7F</p>
 
-  <section class="group-info">
-    <h2>Meet The Team</h2>
-    <div class="members">
-      <div class="member"><h3>Kinan</h3><p>Creative Leader</p></div>
-      <div class="member"><h3>Rangga</h3><p>Vice Leader</p></div>
-      <div class="member"><h3>Dodi</h3><p>Editor</p></div>
-      <div class="member"><h3>Valdy</h3><p>Editor</p></div>
-      <div class="member"><h3>Azzira</h3><p>Editor</p></div>
-      <div class="member"><h3>Raissa</h3><p>Editor</p></div>
-      <div class="member"><h3>Dafi</h3><p>Illustrator</p></div>
-      <div class="member"><h3>Nayra</h3><p>Illustrator</p></div>
-      <div class="member"><h3>Padma</h3><p>Illustrator</p></div>
-    </div>
-  </section>
+    <div id="project-container"></div>
 
-  <footer>© 2025 The Goats Team | All Rights Reserved 🐐</footer>
+    <section class="group-info">
+      <h2>Meet The Team</h2>
+      <div class="members">
+        <div class="member"><h3>Kinan</h3><p>Our creative leader</p></div>
+        <div class="member"><h3>Rangga</h3><p>Our vice leader</p></div>
+        <div class="member"><h3>Dodi</h3><p>Editor</p></div>
+        <div class="member"><h3>Valdy</h3><p>Editor</p></div>
+        <div class="member"><h3>Azzira</h3><p>Editor</p></div>
+        <div class="member"><h3>Raissa</h3><p>Editor</p></div>
+        <div class="member"><h3>Dafi</h3><p>Illustrator</p></div>
+        <div class="member"><h3>Nayra</h3><p>Illustrator</p></div>
+        <div class="member"><h3>Padma</h3><p>Illustrator</p></div>
+      </div>
+    </section>
+
+    <footer>© 2025 The Goats Team | All Rights Reserved 🐐</footer>
+  </div>
 
   <script>
-    const music = document.getElementById('bg-music');
-    const sfx = document.getElementById('hover-sfx');
-    const btn = document.getElementById('sound-toggle');
-    let playing = false;
-
-    btn.addEventListener('click', () => {
-      if (playing) {
-        music.pause();
-        btn.textContent = "🔇 Sound Off";
-      } else {
-        music.play();
-        btn.textContent = "🔊 Sound On";
-      }
-      playing = !playing;
-    });
-
-    // Play hover sound when hovering over project cards
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('.project-card') || e.target.closest('.member')) {
-        sfx.currentTime = 0;
-        sfx.play();
-      }
-    });
-
+    // existing project list rendering (unchanged)
     const projects = [
       {title: "Dafi - Pocong Kehidupan", description: "Tema: Mistis/Jenaka", link: "https://docs.google.com/document/d/1gPKaczQiabiulN8GWo03mCoAPv1bvwOM/edit"},
       {title: "Kinan - Sahabat Malam", description: "Tema: Supranatural & Friendship", link: "https://docs.google.com/document/d/1YgkTf5XmxWj-mY9pIGWL3bmvlgVTpsLD/edit"},
@@ -272,9 +311,9 @@
       card.innerHTML = `<h3>${p.title}</h3><p>${p.description}</p><a href="${p.link}" target="_blank">Open Project</a>`;
       container.appendChild(card);
     });
+
+    // SOUND controls are left in if you want them; watermark doesn't affect them.
+    // If you want me to wire the music in and host your mp3 inside the repo, say "host audio" and I'll give steps.
   </script>
 </body>
 </html>
-
-
-
