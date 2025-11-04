@@ -7,14 +7,17 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
-    :root{
-      --watermark-color: rgba(255,255,255,0.06); /* subtle */
+    :root {
+      --cyan: #00ffff;
+      --glow: rgba(0,255,255,0.5);
+      --bg-dark: linear-gradient(120deg, #0a0c12, #0f2027, #203a43, #2c5364);
+      --watermark-color: rgba(255,255,255,0.06);
       --watermark-rotate: -12deg;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(120deg, #0a0c12, #0f2027, #203a43, #2c5364);
+      background: var(--bg-dark);
       background-size: 400% 400%;
       color: #e6e6e6;
       margin: 0;
@@ -37,34 +40,32 @@
       top: 50%;
       transform: translate(-50%, -50%) rotate(var(--watermark-rotate));
       font-weight: 900;
-      letter-spacing: 0.02em;
       color: var(--watermark-color);
-      /* responsive size: min 6rem, ideal 25vw, max 20rem */
       font-size: clamp(6rem, 25vw, 20rem);
-      z-index: 0;                 /* behind everything */
-      pointer-events: none;      /* don't block clicks */
-      user-select: none;         /* can't be selected */
-      white-space: nowrap;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
       text-transform: uppercase;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      mix-blend-mode: normal;    /* keeps predictable color */
+      animation: watermarkPulse 8s ease-in-out infinite alternate;
+    }
+    @keyframes watermarkPulse {
+      from { opacity: 0.04; transform: translate(-50%, -50%) rotate(var(--watermark-rotate)) scale(1); }
+      to { opacity: 0.1; transform: translate(-50%, -50%) rotate(var(--watermark-rotate)) scale(1.05); }
     }
 
-    /* ===== MAIN CONTENT (above watermark) ===== */
+    /* ===== MAIN CONTENT ===== */
     .main {
       position: relative;
-      z-index: 1; /* place content above watermark */
+      z-index: 2;
+      padding-bottom: 3rem;
     }
 
-    /* Floating title */
     .floating-text {
-      position: relative;
       font-size: 3rem;
       font-weight: 800;
       letter-spacing: 5px;
       text-transform: uppercase;
-      margin: 1.5rem 0 0.5rem 0;
+      margin: 2rem 0 0.5rem 0;
       background: linear-gradient(90deg, #00f2ff, #00ff88, #ff0099, #00f2ff);
       background-size: 300%;
       -webkit-background-clip: text;
@@ -77,10 +78,17 @@
       0%, 100% { transform: translateX(-10px); }
       50% { transform: translateX(10px); }
     }
-
     @keyframes colorShift {
       0% { background-position: 0%; }
       100% { background-position: 300%; }
+    }
+
+    .subtitle {
+      color: #00eaff;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(0,255,255,0.3);
+      margin-bottom: 2rem;
     }
 
     header {
@@ -90,17 +98,13 @@
       font-size: 1.8rem;
       border-radius: 10px 10px 0 0;
       box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      animation: fadeSlideIn 1s ease forwards;
       opacity: 0;
       transform: translateY(-40px);
-      animation: fadeSlideIn 1s ease forwards;
       animation-delay: 0.5s;
     }
-
     @keyframes fadeSlideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     #project-container {
@@ -113,51 +117,41 @@
     }
 
     .project-card {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       border-radius: 12px;
       box-shadow: 0 0 12px rgba(0,255,255,0.1);
       padding: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: 0.3s ease;
       opacity: 0;
       transform: translateY(40px);
       animation: cardFadeIn 1s ease forwards;
     }
-
-    .project-card:nth-child(1) { animation-delay: 1s; }
-    .project-card:nth-child(2) { animation-delay: 1.2s; }
-    .project-card:nth-child(3) { animation-delay: 1.4s; }
-    .project-card:nth-child(4) { animation-delay: 1.6s; }
-    .project-card:nth-child(5) { animation-delay: 1.8s; }
-    .project-card:nth-child(6) { animation-delay: 2s; }
-
     @keyframes cardFadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .project-card:hover {
       transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 4px 20px rgba(0,255,255,0.4);
+      box-shadow: 0 0 25px var(--glow);
+      background: rgba(255,255,255,0.12);
     }
 
     .project-card a {
       display: inline-block;
       margin-top: 10px;
-      color: #00ffff;
+      color: var(--cyan);
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
     }
-
     .project-card a:hover {
       color: #00ff99;
       text-decoration: underline;
     }
 
+    /* TEAM SECTION */
     .group-info {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0,0,0,0.4);
       border-top: 2px solid rgba(0,255,255,0.3);
       padding: 3rem 1rem;
       margin-top: 3rem;
@@ -187,26 +181,41 @@
       transition: 0.3s;
       box-shadow: 0 0 10px rgba(0,255,255,0.1);
     }
-
     .member:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 15px rgba(0,255,255,0.4);
     }
-
-    .member h3 {
-      margin: 0.5rem 0;
-      color: #00ffff;
-    }
-
-    .member p {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin: 0;
-    }
+    .member h3 { color: var(--cyan); margin: 0.5rem 0; }
+    .member p { font-size: 0.9rem; color: #ccc; margin: 0; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ILLUSTRATION SECTION */
+    .Illustration {
+      animation: fadeIn 1.5s ease-in-out;
+      color: lightskyblue;
+      margin-top: 2rem;
+    }
+    .Image {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+      justify-items: center;
+    }
+    .Image img {
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+    .Image img:hover { transform: scale(1.05); }
+    .Image h4 {
+      color: #b3ecff;
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
     }
 
     footer {
@@ -217,61 +226,36 @@
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Sound toggle */
-    #sound-toggle {
+    /* Scroll-to-top button */
+    #toTop {
       position: fixed;
-      top: 15px;
-      right: 20px;
-      background: rgba(0,255,255,0.1);
-      border: 1px solid rgba(0,255,255,0.4);
-      color: #00ffff;
-      padding: 10px 18px;
-      border-radius: 8px;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(0,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      padding: 10px;
       cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      font-weight: 600;
-      z-index: 12;
+      color: #00ffff;
+      transition: all 0.3s;
     }
-    #sound-toggle:hover { transform: scale(1.05); }
+    #toTop:hover { transform: scale(1.1); background: rgba(0,255,255,0.4); }
 
-    /* ensure page content sits above watermark */
-    header, .floating-text, #project-container, .group-info, footer {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* small screens tweak */
     @media (max-width: 560px) {
-      .watermark { font-size: clamp(4rem, 48vw, 10rem); transform: translate(-50%, -52%) rotate(var(--watermark-rotate)); }
-      .floating-text { font-size: 1.8rem; }
+      .floating-text { font-size: 2rem; }
+      .watermark { font-size: clamp(4rem, 48vw, 10rem); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Big subtle watermark behind everything -->
-  <div class="watermark">DAFI</div>
+  <div class="watermark">D</div>
 
   <div class="main">
-    <button id="sound-toggle">🔇 Sound Off</button>
-
-    <!-- Background music (host locally or via a direct link you control) -->
-    <audio id="bg-music" loop preload="auto">
-      <!-- Replace src with your hosted mp3 path (example: assets/epic.mp3) -->
-      <!-- <source src="assets/epic.mp3" type="audio/mpeg"> -->
-    </audio>
-
-    <!-- Hover sound example (replace with your hosted mp3) -->
-    <audio id="hover-sfx" preload="auto">
-      <!-- <source src="assets/click.mp3" type="audio/mpeg"> -->
-    </audio>
-
     <div class="floating-text">The Goats</div>
+    <p class="subtitle">Website by Dafi (7F) — The Goats Team Projects</p>
     <header>🌟 Our Group Projects</header>
-    <p>Website Development By Dafi 7F</p>
-    <p>Website Development By Dafi 7F</p>
-    <p>Website Development By Dafi 7F</p>
 
     <div id="project-container"></div>
 
@@ -279,7 +263,7 @@
       <h2>Meet The Team</h2>
       <div class="members">
         <div class="member"><h3>Kinan</h3><p>Our creative leader</p></div>
-        <div class="member"><h3>Rangga</h3><p>Our vice leader</p></div>
+        <div class="member"><h3>Rangga</h3><p>Vice leader</p></div>
         <div class="member"><h3>Dodi</h3><p>Editor</p></div>
         <div class="member"><h3>Valdy</h3><p>Editor</p></div>
         <div class="member"><h3>Azzira</h3><p>Editor</p></div>
@@ -290,11 +274,29 @@
       </div>
     </section>
 
+    <section class="Illustration">
+      <h1>Illustration</h1>
+      <div class="Image">
+        <div>
+          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" width="200px">
+          <h4>Author/Artist: ...</h4>
+        </div>
+        <div>
+          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" width="200px">
+          <h4>Author/Artist: ...</h4>
+        </div>
+        <div>
+          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" width="200px">
+          <h4>Author/Artist: ...</h4>
+        </div>
+      </div>
+    </section>
+
     <footer>© 2025 The Goats Team | All Rights Reserved 🐐</footer>
+    <button id="toTop">⬆️</button>
   </div>
 
   <script>
-    // existing project list rendering (unchanged)
     const projects = [
       {title: "Dafi - Pocong Kehidupan", description: "Tema: Mistis/Jenaka", link: "https://docs.google.com/document/d/1gPKaczQiabiulN8GWo03mCoAPv1bvwOM/edit"},
       {title: "Kinan - Sahabat Malam", description: "Tema: Supranatural & Friendship", link: "https://docs.google.com/document/d/1YgkTf5XmxWj-mY9pIGWL3bmvlgVTpsLD/edit"},
@@ -303,20 +305,21 @@
       {title: "Rangga - Bintang Yang Tak Bersinar", description: "...", link: "https://docs.google.com/document/d/1-wXmpMmXF-OSE-fMKw0AYMtdOKVFaCMB/edit"},
       {title: "Padma - Sehari Di Rumah Boneka Adikku", description: "...", link: "https://docs.google.com/document/d/1ZMbVzXSEn_RhOcbuEPxCMSy437jartX1/edit"},
       {title: "Raissa - Riasan Ajaib", description: "...", link: "https://docs.google.com/document/d/1tNZ5sQsxcSUryj2VLrDvincH8hXGGVo6/edit"},
-      
+      {title: "Dodi - Satu Kerajaan Dihancurkan, Satu Seg...", description: "...", link: "https://docs.google.com/document/d/1DMGNgqnjaWHdZwW8X-cPInVXHCllGEDJ/edit"},
+      {title: "Azzira - ...", description: "...", link: ""}
     ];
 
     const container = document.getElementById('project-container');
-    projects.forEach(p => {
+    projects.forEach((p, i) => {
       const card = document.createElement('div');
       card.className = 'project-card';
+      card.style.animationDelay = `${1 + i * 0.2}s`;
       card.innerHTML = `<h3>${p.title}</h3><p>${p.description}</p><a href="${p.link}" target="_blank">Open Project</a>`;
       container.appendChild(card);
     });
 
-    // SOUND controls are left in if you want them; watermark doesn't affect them.
-    // If you want me to wire the music in and host your mp3 inside the repo, say "host audio" and I'll give steps.
+    // Scroll-to-top
+    document.getElementById("toTop").onclick = () => window.scrollTo({top: 0, behavior: "smooth"});
   </script>
 </body>
 </html>
-
