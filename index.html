@@ -431,7 +431,11 @@
       <h2>💬 Send Us Feedback</h2>
       <p>We’d love to hear your thoughts about our projects!</p>
     
-      <form id="feedback-form">
+      <form 
+        action="https://getform.io/f/abcd1234-5678-efgh-ijkl-9012mnop3456" 
+        method="POST"
+        id="feedback-form">
+        
         <input type="text" name="name" placeholder="Your Name" required>
         <textarea name="message" placeholder="Your Message..." required></textarea>
         <button type="submit">Send</button>
@@ -441,26 +445,27 @@
     </section>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNS4RPhAjYu0ejNzwBixAvWLa9aXqT7H_L7DbowHKbDA3RGw/viewform?usp=dialog">Or use the google form</a>
     <script>
-    document.getElementById("feedback-form").addEventListener("submit", e => {
-      e.preventDefault(); // stop reload
-    
-      const status = document.getElementById("status");
-      status.textContent = "Sending...";
-    
-      // 🔧 Replace this with your own webhook or Google Apps Script URL:
-      fetch("https://discord.com/api/webhooks/1435620263223103554/2CXGI_dvlXC43ybfnUlqH-Nlm0bSoYnOQ2RG1OhaaJsRisVppl1HOOTfIuvMVTaLqsir", {
-        method: "POST",
-        body: new FormData(e.target)
-      })
-      .then(() => {
-        status.textContent = "✅ Sent successfully!";
-        e.target.reset();
-      })
-      .catch(() => {
-        status.textContent = "❌ Failed to send!";
+      document.getElementById("feedback-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const status = document.getElementById("status");
+        status.textContent = "Sending...";
+      
+        const formData = new FormData(e.target);
+      
+        const res = await fetch(e.target.action, {
+          method: "POST",
+          body: formData,
+        });
+      
+        if (res.ok) {
+          status.textContent = "✅ Sent successfully!";
+          e.target.reset();
+        } else {
+          status.textContent = "❌ Failed to send!";
+        }
       });
-    });
     </script>
+
 
 
     
@@ -497,6 +502,7 @@
   </script>
 </body>
 </html>
+
 
 
 
