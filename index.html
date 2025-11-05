@@ -1,8 +1,9 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="The Goats - A creative student team showcasing stories, art, and epic projects." />
   <title>The Goats - Epic Projects</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
@@ -24,13 +25,17 @@
       padding: 0;
       text-align: center;
       overflow-x: hidden;
-      animation: bgShift 20s ease-in-out infinite;
+      animation: bgShift 20s ease-in-out infinite, fadeInPage 1.2s ease forwards;
+      opacity: 0;
     }
 
     @keyframes bgShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeInPage {
+      to { opacity: 1; }
     }
 
     /* ===== WATERMARK ===== */
@@ -211,9 +216,11 @@
       box-shadow: 0 0 10px rgba(0,255,255,0.2);
       transition: transform 0.3s ease;
     }
-    .Image img:hover { transform: scale(1.05); }
+    .Image img:hover {
+      transform: scale(1.05);
+    }
     .Image h4 {
-      color: #b3ecff;
+      color: rgba(0,255,255,0.2);
       font-size: 0.9rem;
       margin-top: 0.3rem;
     }
@@ -224,6 +231,31 @@
       font-size: 0.9rem;
       color: #999;
       border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ===== FLOATING MENU ===== */
+    .section {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 5;
+    }
+    .section h3 {
+      background: rgba(0,255,255,0.15);
+      border-radius: 12px;
+      padding: 10px 15px;
+      cursor: pointer;
+      color: #00ffff;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+    .section h3:hover {
+      background: rgba(0,255,255,0.3);
+      transform: translateX(-5px);
+      box-shadow: 0 0 12px rgba(0,255,255,0.4);
     }
 
     /* Scroll-to-top button */
@@ -239,8 +271,15 @@
       cursor: pointer;
       color: #00ffff;
       transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(0,255,255,0.4);
+      animation: glowPulse 2s infinite alternate;
     }
     #toTop:hover { transform: scale(1.1); background: rgba(0,255,255,0.4); }
+
+    @keyframes glowPulse {
+      from { box-shadow: 0 0 8px rgba(0,255,255,0.3); }
+      to { box-shadow: 0 0 20px rgba(0,255,255,0.6); }
+    }
 
     @media (max-width: 560px) {
       .floating-text { font-size: 2rem; }
@@ -255,11 +294,18 @@
   <div class="main">
     <div class="floating-text">The Goats</div>
     <p class="subtitle">Website by Dafi (7F) — The Goats Team Projects</p>
-    <header>🌟 Our Group Projects</header>
+    <header id="projects">🌟 Our Group Projects</header>
 
     <div id="project-container"></div>
 
-    <section class="group-info">
+    <!-- Floating Menu -->
+    <div class="section">
+      <h3 id="toProjects">Projects</h3>
+      <h3 id="toMembers">Members</h3>
+      <h3 id="toIllustrations">Illustrations</h3>
+    </div>
+
+    <section id="members" class="group-info">
       <h2>Meet The Team</h2>
       <div class="members">
         <div class="member"><h3>Kinan</h3><p>Our creative leader</p></div>
@@ -274,19 +320,19 @@
       </div>
     </section>
 
-    <section class="Illustration">
+    <section id="illustrations" class="Illustration">
       <h1>Illustration</h1>
       <div class="Image">
         <div>
-          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" width="200px">
+          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" alt="Illustration 1" width="200px">
+          <h4>Author/Artist: Padma</h4>
+        </div>
+        <div>
+          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" alt="Illustration 2" width="200px">
           <h4>Author/Artist: ...</h4>
         </div>
         <div>
-          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" width="200px">
-          <h4>Author/Artist: ...</h4>
-        </div>
-        <div>
-          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" width="200px">
+          <img src="https://static.vecteezy.com/system/resources/previews/016/916/479/non_2x/placeholder-icon-design-free-vector.jpg" alt="Illustration 3" width="200px">
           <h4>Author/Artist: ...</h4>
         </div>
       </div>
@@ -318,9 +364,11 @@
       container.appendChild(card);
     });
 
-    // Scroll-to-top
+    // Smooth navigation scroll
     document.getElementById("toTop").onclick = () => window.scrollTo({top: 0, behavior: "smooth"});
+    document.getElementById("toProjects").onclick = () => document.getElementById("projects").scrollIntoView({behavior: "smooth"});
+    document.getElementById("toMembers").onclick = () => document.getElementById("members").scrollIntoView({behavior: "smooth"});
+    document.getElementById("toIllustrations").onclick = () => document.getElementById("illustrations").scrollIntoView({behavior: "smooth"});
   </script>
 </body>
 </html>
-
