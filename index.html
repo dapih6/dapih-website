@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="The Goats - A creative student team showcasing stories, art, and epic projects." />
   <title>The Goats - Epic Projects</title>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
@@ -34,10 +35,9 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    @keyframes fadeInPage {
-      to { opacity: 1; }
-    }
+    @keyframes fadeInPage { to { opacity: 1; } }
 
+    /* ===== WATERMARK ===== */
     .watermark {
       position: fixed;
       left: 50%;
@@ -57,6 +57,7 @@
       to { opacity: 0.1; transform: translate(-50%, -50%) rotate(var(--watermark-rotate)) scale(1.05); }
     }
 
+    /* ===== MAIN CONTENT ===== */
     .main {
       position: relative;
       z-index: 2;
@@ -77,8 +78,14 @@
       animation: moveText 5s ease-in-out infinite, colorShift 6s linear infinite;
     }
 
-    @keyframes moveText { 0%, 100% { transform: translateX(-10px); } 50% { transform: translateX(10px); } }
-    @keyframes colorShift { 0% { background-position: 0%; } 100% { background-position: 300%; } }
+    @keyframes moveText {
+      0%, 100% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+    }
+    @keyframes colorShift {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
 
     .subtitle {
       color: #00eaff;
@@ -102,6 +109,7 @@
     }
     @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
 
+    /* ===== PROJECTS ===== */
     #project-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -137,8 +145,12 @@
       font-weight: bold;
       transition: color 0.2s;
     }
-    .project-card a:hover { color: #00ff99; text-decoration: underline; }
+    .project-card a:hover {
+      color: #00ff99;
+      text-decoration: underline;
+    }
 
+    /* ===== MEMBERS ===== */
     .group-info {
       background: rgba(0,0,0,0.4);
       border-top: 2px solid rgba(0,255,255,0.3);
@@ -170,55 +182,56 @@
       transition: 0.3s;
       box-shadow: 0 0 10px rgba(0,255,255,0.1);
     }
-    .member:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(0,255,255,0.4); }
+    .member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+    }
     .member h3 { color: var(--cyan); margin: 0.5rem 0; }
     .member p { font-size: 0.9rem; color: #ccc; margin: 0; }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* ===== ILLUSTRATION SECTION ===== */
+    /* ===== ILLUSTRATIONS ===== */
     .Illustration {
       animation: fadeIn 1.5s ease-in-out;
       color: lightskyblue;
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
-
     .Image {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
       padding: 1rem;
       justify-items: center;
+      max-width: 1000px;
+      margin: auto;
     }
-
     .Image img {
       width: 100%;
-      max-width: 380px;
+      max-width: 350px;
       height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.25);
-      transition: transform 0.3s ease, box-shadow 0.3s;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .Image img:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(0,255,255,0.4);
+      box-shadow: 0 0 35px var(--glow);
     }
-
     .Image h4 {
-      color: rgba(0,255,255,0.5);
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
+      color: rgba(0,255,255,0.8);
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      text-shadow: 0 0 6px rgba(0,255,255,0.4);
     }
 
     footer {
-      margin-top: 2rem;
+      margin-top: 3rem;
       padding: 1rem;
       font-size: 0.9rem;
       color: #999;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* ===== FLOATING MENU ===== */
     .section {
       position: fixed;
       bottom: 100px;
@@ -259,7 +272,16 @@
       animation: glowPulse 2s infinite alternate;
     }
     #toTop:hover { transform: scale(1.1); background: rgba(0,255,255,0.4); }
-    @keyframes glowPulse { from { box-shadow: 0 0 8px rgba(0,255,255,0.3); } to { box-shadow: 0 0 20px rgba(0,255,255,0.6); } }
+
+    @keyframes glowPulse {
+      from { box-shadow: 0 0 8px rgba(0,255,255,0.3); }
+      to { box-shadow: 0 0 20px rgba(0,255,255,0.6); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 560px) {
       .floating-text { font-size: 2rem; }
@@ -267,8 +289,8 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="watermark">D</div>
 
   <div class="main">
@@ -301,18 +323,18 @@
     </section>
 
     <section id="illustrations" class="Illustration">
-      <h1>Illustration</h1>
+      <h1>Illustration Gallery</h1>
       <div class="Image">
         <div>
-          <img src="./Illustration1Dafi.png" alt="Illustration 1">
+          <img src="./Illustration1Dafi.png" alt="Illustration 1 by Dafi">
           <h4>Author/Artist: Dafi</h4>
         </div>
         <div>
-          <img src="./Illustration2Padma.png" alt="Illustration 2">
+          <img src="./Illustration2Padma.png" alt="Illustration 2 by Padma">
           <h4>Author/Artist: Padma</h4>
         </div>
         <div>
-          <img src="./Illustration3Padma.png" alt="Illustration 3">
+          <img src="./Illustration3Padma.png" alt="Illustration 3 by Padma">
           <h4>Author/Artist: Padma</h4>
         </div>
       </div>
@@ -344,6 +366,7 @@
       container.appendChild(card);
     });
 
+    // Smooth scrolling
     document.getElementById("toTop").onclick = () => window.scrollTo({top: 0, behavior: "smooth"});
     document.getElementById("toProjects").onclick = () => document.getElementById("projects").scrollIntoView({behavior: "smooth"});
     document.getElementById("toMembers").onclick = () => document.getElementById("members").scrollIntoView({behavior: "smooth"});
@@ -351,5 +374,3 @@
   </script>
 </body>
 </html>
-
-
