@@ -256,6 +256,57 @@
       box-shadow: 0 0 12px rgba(0,255,255,0.4);
     }
 
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.8rem;
+      z-index: 10;
+    }
+    .navbar a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .navbar a:hover {
+      color: #00ff99;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-width: 400px;
+      margin: 1rem auto;
+    }
+    input, textarea {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(0,255,255,0.3);
+      color: #fff;
+      border-radius: 8px;
+      padding: 0.6rem;
+    }
+    button {
+      background: var(--cyan);
+      color: #000;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00ff99;
+    }
+
+    
     #toTop {
       position: fixed;
       bottom: 25px;
@@ -293,6 +344,13 @@
 <body>
   <div class="watermark">D</div>
 
+  <nav class="navbar">
+    <a href="#projects">Projects</a>
+    <a href="#members">Members</a>
+    <a href="#illustrations">Illustrations</a>
+  </nav>
+
+  
   <div class="main">
     <div class="floating-text">The Goats</div>
     <p class="subtitle">Website by Dafi (7F) — The Goats Team Projects</p>
@@ -342,6 +400,18 @@
 
     <footer>© 2025 The Goats Team | All Rights Reserved 🐐</footer>
     <button id="toTop">⬆️</button>
+
+    <section id="contact" class="group-info">
+      <h2>Feedback</h2>
+      <p>Got suggestions for The Goats? Let us know!</p>
+      <form action="https://your-google-form-url" target="_blank">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="feedback" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    
   </div>
 
   <script>
@@ -374,3 +444,4 @@
   </script>
 </body>
 </html>
+
